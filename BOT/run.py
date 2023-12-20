@@ -9,7 +9,7 @@ def main():
     """
     Description: Invoke the bot and prepare the tokens.
     """
-    load_dotenv()
+    load_dotenv(override=True)
 
     token = os.environ["TOKEN"]
     guild = os.environ["GUILD_ID"]

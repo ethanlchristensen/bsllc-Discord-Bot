@@ -28,16 +28,16 @@ class SlashMaster:
         self.tree = tree
         self.guild = guild
 
-    def load_commands(self, args=None):
+    def load_commands(self, kwargs=None):
         """
         initialize each command with the current tree and guild
         """
         for file in self.get_next_command():
             print(
                 DateTimeAlert(
-                    f"loading {file} . . . ",
+                    f"loading {file:^10s} . . . ",
                     dtia_alert_type="INFO",
-                    message_from="bot.slash_master",
+                    message_from="BOT.slash_master",
                 ).text,
                 end="",
             )
@@ -49,7 +49,7 @@ class SlashMaster:
                     f"slash.{file}", file_capitalized
                 )
                 pre_loaded_command = pre_loaded_command(
-                    self.tree, self.guild, args=args
+                    self.tree, self.guild, kwargs=kwargs
                 )
                 print(f"{SuccessAlert('success')}")
             except Exception as error:

@@ -6,7 +6,7 @@ class Add:
     Description: adds two numbers.
     """
 
-    def __init__(self, tree, guild, args=None):
+    def __init__(self, tree, guild, kwargs=None):
         """
         Description: Constructor.
         """

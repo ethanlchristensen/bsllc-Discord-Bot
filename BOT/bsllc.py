@@ -1,13 +1,12 @@
 """
 DISCORD BOT
 
-Authors: Nolan Gregory, Ethan Christensen, Klim F.
+Authors: Ethan Christensen
 Version: 0.69
-Intent: This multifaceted bot is to promote user activity within
-        servers that it is hosted in.
 """
 
 import os
+import json
 import discord
 import asyncio
 from discord import Message, app_commands
@@ -27,20 +26,22 @@ class BSLLCBot(discord.Client):
         self.debug = bool(int(debug))
         self.slash_commands_path = cmds_path
         self.globals = {
+            "queue": [],
+            "chat_history": {}
         }
         # Create CommandTree object
         self.tree = app_commands.CommandTree(self)
 
     async def on_ready(self):
         """
-        Description: Called when the bot is initialized (turned on)
+        Called when the bot is initialized
         """
 
-        # get the text channels in the guild
+        # get the guild
         guild = self.get_guild(self.guild)
         text_channels = None if not guild else guild.text_channels
         
-        # tell slash master to load commands
+        # load all of the slash commands
         SlashMaster(self.tree, self.guild, self.slash_commands_path, self.debug).load_commands(
-            args=(text_channels,)
+            kwargs={"text_channels": text_channels}
         )
