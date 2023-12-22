@@ -18,7 +18,7 @@ class Chat:
 
         @tree.command(
             name="chat",
-            description="chat with Marcus!",
+            description="chat with Jade",
             guild=discord.Object(id=guild),
         )
         async def chat(interaction, message: str):
@@ -36,13 +36,13 @@ class Chat:
                 chat_history_text = ""
                 
                 for past_message in chat_history[username]:
-                    chat_history_text += f"{username}: {past_message[0]}\nAI: {past_message[1]}\n"
+                    chat_history_text += f"{username}: {past_message[0]}\Jade: {past_message[1]}\n"
                 
                 print(chat_history_text)
             else:
                 chat_history_text = "NO CHAT HISTORY YET"
             
-            original_response = prompter.complete(prompt=f"CHAT HISTORY:\n{chat_history_text}\n User Question: " + message, password="awesomeisethan")
+            original_response = prompter.complete(prompt=f"CHAT HISTORY:\n{chat_history_text}\nEND CHAT HISTORY\nUser Question: " + message + "\nJade: ", password="awesomeisethan")
             
             if original_response:
                 if username in chat_history:
